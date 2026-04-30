@@ -1,0 +1,161 @@
+diagnoses:
+  "회전근개 파열 (Rotator Cuff Tear)":
+    description: "어깨를 감싸고 있는 힘줄이 찢어지거나 손상되어 근력 약화와 통증이 발생한 상태가 의심됩니다."
+    score_rules:
+      - field: "weakness"
+        operator: "=="
+        value: "예"
+        score: 5
+      - field: "drop_arm"
+        operator: "=="
+        value: "예"
+        score: 3
+      - field: "night_pain"
+        operator: "=="
+        value: "예"
+        score: 2
+      - field: "age"
+        operator: ">="
+        value: 40
+        score: 1
+    recommendations:
+      physical_tests:
+        - "Drop Arm Test (팔 떨어뜨리기 검사)"
+        - "Empty Can Test / Full Can Test (극상근 근력 검사)"
+      imaging_tests:
+        - "어깨 초음파 (US)"
+        - "어깨 MRI (수술적 치료 고려 시 필수)"
+
+  "동결견 / 오십견 (Frozen Shoulder)":
+    description: "어깨 관절을 둘러싼 관절낭에 염증이 생겨 굳어지면서 모든 방향으로의 움직임이 제한되는 상태가 의심됩니다."
+    score_rules:
+      - field: "stiffness"
+        operator: "=="
+        value: "예"
+        score: 5
+      - field: "rom_back"
+        operator: "=="
+        value: "예"
+        score: 3
+      - field: "dm_hx"
+        operator: "=="
+        value: "예"
+        score: 2
+      - field: "night_pain"
+        operator: "=="
+        value: "예"
+        score: 1
+    recommendations:
+      physical_tests:
+        - "수동적 관절 가동범위(PROM) 정밀 측정"
+        - "Apley Scratch Test"
+      imaging_tests:
+        - "어깨 X-ray 촬영 (관절염 배제용)"
+
+  "어깨 충돌증후군 (Impingement Syndrome)":
+    description: "팔을 들어 올릴 때 어깨 뼈와 힘줄이 마찰을 일으켜 통증이 발생하는 상태가 의심됩니다."
+    score_rules:
+      - field: "overhead_pain"
+        operator: "=="
+        value: "예"
+        score: 4
+      - field: "rom_side"
+        operator: "=="
+        value: "예"
+        score: 3
+      - field: "catching"
+        operator: "=="
+        value: "예"
+        score: 2
+    recommendations:
+      physical_tests:
+        - "Neer Impingement Test (니어 충돌 검사)"
+        - "Hawkins-Kennedy Test (호킨스 검사)"
+      imaging_tests:
+        - "어깨 X-ray (견봉 형태 확인)"
+        - "어깨 초음파 (점액낭염 동반 여부 확인)"
+
+  "경추 신경근병증 / 목 디스크":
+    description: "어깨 관절 자체의 문제보다는 목(경추)에서 내려오는 신경이 눌려 어깨부터 팔까지 저림과 통증이 방사되는 상태가 의심됩니다."
+    score_rules:
+      - field: "numbness"
+        operator: "=="
+        value: "예"
+        score: 6
+      - field: "neck_pain"
+        operator: "=="
+        value: "예"
+        score: 3
+    recommendations:
+      physical_tests:
+        - "Spurling Test (스펄링 검사)"
+        - "상지 신경학적 검사 (감각, 근력, 반사)"
+      imaging_tests:
+        - "경추(목) X-ray"
+        - "경추 MRI"
+
+  "어깨 불안정성 / 탈구 (Shoulder Instability)":
+    description: "어깨 관절이 정상적인 위치에서 벗어나려 하거나 자주 빠지는 불안정한 상태가 의심됩니다."
+    score_rules:
+      - field: "instability"
+        operator: "=="
+        value: "예"
+        score: 5
+      - field: "dislocation_hx"
+        operator: "=="
+        value: "예"
+        score: 4
+      - field: "popping"
+        operator: "=="
+        value: "예"
+        score: 1
+    recommendations:
+      physical_tests:
+        - "Apprehension & Relocation Test (불안정성 검사)"
+        - "Load and Shift Test"
+      imaging_tests:
+        - "어깨 X-ray (방카르트/힐삭스 병변 확인)"
+        - "어깨 MR Arthrography (조영제 MRI)"
+
+  "견쇄관절 병변 (AC Joint Arthropathy)":
+    description: "쇄골과 어깨뼈가 만나는 관절(견쇄관절)에 염증이나 손상이 발생한 상태가 의심됩니다."
+    score_rules:
+      - field: "cross_body_pain"
+        operator: "=="
+        value: "예"
+        score: 5
+    recommendations:
+      physical_tests:
+        - "Cross Body Adduction Test (가로지르기 검사)"
+        - "AC joint 압통 검사"
+      imaging_tests:
+        - "어깨 X-ray (견쇄관절 집중 촬영 Zanca view)"
+
+red_flags:
+  - name: "골절 및 급성 외상 (즉각적인 X-ray 필요)"
+    logic: "any"
+    rules:
+      - field: "trauma"
+        operator: "=="
+        value: "예"
+  - name: "심각한 신경 손상 동반 의심 (응급 정밀 검사 권장)"
+    logic: "all"
+    rules:
+      - field: "weakness"
+        operator: "=="
+        value: "예"
+      - field: "numbness"
+        operator: "=="
+        value: "예"
+  - name: "악성 종양 의심 (전신 스크리닝 필요)"
+    logic: "any"
+    rules:
+      - field: "weight_loss"
+        operator: "=="
+        value: "예"
+  - name: "관절 내 감염성 질환 의심 (혈액검사 및 응급 진료 필요)"
+    logic: "any"
+    rules:
+      - field: "fever"
+        operator: "=="
+        value: "예"
