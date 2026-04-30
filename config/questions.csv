@@ -1,5 +1,5 @@
 order,key,section,question,type,options,required,help_text,condition_field,condition_value
-1,name,기본정보,환자분의 성함을 입력해주세요.,text,,y,예: 홍길동,,
+1,name,기본정보,환자분의 성함을 입력해주세요.,text,,y,예: 홍0동(개인정보이니 가명으로 작성),,
 2,age,기본정보,환자분의 나이를 숫자로 입력해주세요.,text,,y,예: 45,,
 3,sex,기본정보,성별을 선택해주세요.,choice,남성|여성,y,,,
 4,occupation,기본정보,어깨를 많이 사용하는 직업이나 활동을 하십니까?,choice,예|아니오,y,,,
